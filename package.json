@@ -29,9 +29,7 @@
   },
   "dependencies": {
     "lodash": "^4.17.15",
-    "openapi3-ts": "^1.3.0",
-    "path-to-regexp": "^2.2.1",
-    "reflect-metadata": "^0.1.13"
+    "path-to-regexp": "^2.2.1"
   },
   "devDependencies": {
     "@team-griffin/install-self-peers": "^1.1.1",
@@ -46,7 +44,9 @@
     "class-validator-jsonschema": "^1.3.0",
     "codecov": "^3.6.1",
     "jest": "^24.9.0",
+    "openapi3-ts": "^1.3.0",
     "prettier": "^1.19.1",
+    "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.0",
     "ts-jest": "^24.2.0",
     "tslint": "^5.20.1",
@@ -55,6 +55,8 @@
     "typescript": "^3.7.2"
   },
   "peerDependencies": {
+    "openapi3-ts": "^1.3.0",
+    "reflect-metadata": "^0.1.13",
     "routing-controllers": "^0.8.0"
   }
 }
