@@ -1,7 +1,9 @@
 npm-debug*
-node_modules
+#build
+#node_modules
 coverage
 .vscode/
+.idea/
 *.key
 *.secret
 yarn-error.log

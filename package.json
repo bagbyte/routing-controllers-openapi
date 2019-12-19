@@ -10,7 +10,7 @@
   ],
   "main": "build/index.js",
   "types": "build/index.d.ts",
-  "repository": "git@github.com:epiphone/routing-controllers-openapi",
+  "repository": "git@github.com:bagbyte/routing-controllers-openapi",
   "author": "Aleksi Pekkala <aleksipekkala@gmail.com>",
   "license": "MIT",
   "scripts": {
