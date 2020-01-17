@@ -18,7 +18,7 @@
     "build": "npm run clean && tsc -p tsconfig.release.json",
     "format": "prettier --write {src,test}/**/*.ts",
     "lint": "tslint --project . src/**/*.ts",
-    "prepare": "install-self-peers -- --ignore-scripts && npm run build",
+    "prepare": "npm run build",
     "send-coverage": "codecov -f coverage/*.json",
     "test": "jest --coverage",
     "test:watch": "jest --watch"
@@ -34,7 +34,6 @@
     "reflect-metadata": "^0.1.13"
   },
   "devDependencies": {
-    "@team-griffin/install-self-peers": "^1.1.1",
     "@types/jest": "^24.0.23",
     "@types/lodash": "^4.14.149",
     "@types/node": "^12.12.14",
@@ -48,6 +47,7 @@
     "jest": "^24.9.0",
     "prettier": "^1.19.1",
     "rimraf": "^3.0.0",
+    "routing-controllers": "^0.8.0",
     "ts-jest": "^24.2.0",
     "tslint": "^5.20.1",
     "tslint-config-prettier": "^1.18.0",
