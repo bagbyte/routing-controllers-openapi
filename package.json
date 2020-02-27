@@ -15,10 +15,10 @@
   "license": "MIT",
   "scripts": {
     "clean": "rimraf coverage build",
-    "build": "rimraf coverage build && tsc -p tsconfig.release.json",
+    "build": "npm run clean && tsc -p tsconfig.release.json",
     "format": "prettier --write {src,test}/**/*.ts",
     "lint": "tslint --project . src/**/*.ts",
-    "prepare": "rimraf coverage build && tsc -p tsconfig.release.json",
+    "prepare_": "npm run build",
     "send-coverage": "codecov -f coverage/*.json",
     "test": "jest --coverage",
     "test:watch": "jest --watch"
