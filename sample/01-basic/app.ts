@@ -1,5 +1,4 @@
 import 'reflect-metadata'
-import { getFromContainer, MetadataStorage } from 'class-validator' // tslint:disable-line
 import { validationMetadatasToSchemas } from 'class-validator-jsonschema'
 import { Express } from 'express'
 import {
@@ -7,6 +6,7 @@ import {
   getMetadataArgsStorage
 } from 'routing-controllers'
 import { routingControllersToSpec } from 'routing-controllers-openapi'
+import * as swaggerUiExpress from 'swagger-ui-express';
 
 import { UsersController } from './UsersController'
 
@@ -17,8 +17,7 @@ const routingControllersOptions = {
 const app: Express = createExpressServer(routingControllersOptions)
 
 // Parse class-validator classes into JSON Schema:
-const metadatas = (getFromContainer(MetadataStorage) as any).validationMetadatas
-const schemas = validationMetadatasToSchemas(metadatas, {
+const schemas = validationMetadatasToSchemas({
   refPointerPrefix: '#/components/schemas/'
 })
 
@@ -40,6 +39,8 @@ const spec = routingControllersToSpec(storage, routingControllersOptions, {
     version: '1.0.0'
   }
 })
+
+app.use('/docs', swaggerUiExpress.serve, swaggerUiExpress.setup(spec));
 
 // Render spec on root:
 app.get('/', (_req, res) => {

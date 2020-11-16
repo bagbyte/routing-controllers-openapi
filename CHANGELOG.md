@@ -4,6 +4,26 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [2.1.0] - 2020-09-03
+### Added
+- Support multiple `@ResponseSchema` decorators using `oneOf` ([#58](https://github.com/epiphone/routing-controllers-openapi/pull/58))
+
+## [2.0.1] - 2020-06-15
+### Fixed
+- `@QueryParams` object are now correctly split into separate `query` params instead of a single `object` type param ([#49](https://github.com/epiphone/routing-controllers-openapi/pull/49))
+
+## [2.0.0] - 2020-05-04
+### Changed
+- Same as 2.0.0-rc1
+
+## [2.0.0-rc1] - 2020-05-01
+### Changed
+- Bump `class-validator` peer dependency to `^0.12.0` - meaning we're no longer compatible with pre-0.12 versions of `class-validator`!
+
+## [1.8.1] - 2020-04-10
+### Fixed
+- Restored the mistakenly removed `tslib` dependency [#42](https://github.com/epiphone/routing-controllers-openapi/issues/42)
+
 ## [1.8.0]
 ### Added
 - Upgraded dependencies, now supporting `routing-controllers@^0.8.0` ([#33](https://github.com/epiphone/routing-controllers-openapi/issues/33))

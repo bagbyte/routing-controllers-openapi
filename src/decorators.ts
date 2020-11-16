@@ -3,7 +3,7 @@ import {
   OperationObject,
   ReferenceObject,
   ResponsesObject,
-  SchemaObject
+  SchemaObject,
 } from 'openapi3-ts'
 import 'reflect-metadata'
 
@@ -49,7 +49,7 @@ export function applyOpenAPIDecorator(
   const { action } = route
   const openAPIParams = [
     ...getOpenAPIMetadata(action.target),
-    ...getOpenAPIMetadata(action.target.prototype, action.method)
+    ...getOpenAPIMetadata(action.target.prototype, action.method),
   ]
 
   return openAPIParams.reduce((acc: OperationObject, oaParam: OpenAPIParam) => {
@@ -110,7 +110,7 @@ export function ResponseSchema(
 
     if (responseSchemaName) {
       const reference: ReferenceObject = {
-        $ref: `#/components/schemas/${responseSchemaName}`
+        $ref: `#/components/schemas/${responseSchemaName}`,
       }
       const schema: SchemaObject = isArray
         ? { items: reference, type: 'array' }
@@ -119,11 +119,32 @@ export function ResponseSchema(
         [statusCode]: {
           content: {
             [contentType]: {
-              schema
-            }
+              schema,
+            },
           },
-          description
-        }
+          description,
+        },
+      }
+
+      const oldSchema =
+        source.responses[statusCode]?.content[contentType].schema
+
+      if (oldSchema?.$ref || oldSchema?.items || oldSchema?.oneOf) {
+        // case where we're adding multiple schemas under single statuscode/contentType
+        const newStatusCodeResponse = _.merge(
+          {},
+          source.responses[statusCode],
+          responses[statusCode]
+        )
+        const newSchema = oldSchema.oneOf
+          ? {
+              oneOf: [...oldSchema.oneOf, schema],
+            }
+          : { oneOf: [oldSchema, schema] }
+
+        newStatusCodeResponse.content[contentType].schema = newSchema
+        source.responses[statusCode] = newStatusCodeResponse
+        return source
       }
 
       return _.merge({}, source, { responses })
